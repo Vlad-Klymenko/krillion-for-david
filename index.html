@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081f2d">
+  <meta name="description" content="For David: seven trivia prompts, rare answers, and an ocean of unlimited retries. A free, independent Krillion-inspired game.">
+  <title>Krillion Unlimited · For David</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="ocean" aria-hidden="true"><div class="light-ray ray-one"></div><div class="light-ray ray-two"></div><div class="ocean-grain"></div><span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="bubble b4"></span><span class="bubble b5"></span><div class="seabed back"></div><div class="seabed front"></div></div>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Krillion Unlimited home"><span class="brand-mark" aria-hidden="true">k<span>·</span></span><span class="brand-text">krillion<span class="edition">UNLIMITED</span></span></a>
+    <div class="header-actions"><span class="david-badge"><span aria-hidden="true">✦</span> For David</span><button class="icon-button" id="help-button" aria-label="How to play" title="How to play">?</button></div>
+  </header>
+  <main class="game-layout">
+    <aside class="dive-panel" aria-label="Dive depth">
+      <div class="depth-heading"><span class="eyebrow">YOUR DEPTH</span><div class="depth-value"><span id="depth">0</span><span class="unit">m</span></div><span class="zone-label" id="zone">Just beneath the surface</span></div>
+      <div class="depth-ocean" aria-hidden="true"><div class="depth-line"><div class="depth-fill" id="depth-fill"></div></div><div class="depth-labels"><span>0 m</span><span>2,000 m</span><span>4,000 m</span><span>6,000 m</span><span>7,000 m</span></div><div class="diver" id="diver"><span class="diver-glow"></span><img src="./assets/krill.svg" alt=""></div><span class="ocean-zone sunlight">SUNLIGHT</span><span class="ocean-zone twilight">TWILIGHT</span><span class="ocean-zone midnight">MIDNIGHT</span><span class="ocean-zone abyss">THE ABYSS</span></div>
+      <div class="best-depth"><span>PERSONAL BEST</span><strong id="personal-best">0 m</strong></div>
+    </aside>
+    <section class="play-column" aria-label="Trivia game">
+      <div class="game-intro"><div><div class="eyebrow mint">A LITTLE LESS OBVIOUS.</div><h1>A little deeper.</h1></div><div class="unlimited-note"><span class="infinity" aria-hidden="true">∞</span><span>Endless tries.<br>That’s the whole point.</span></div></div>
+      <div class="game-toolbar"><div class="category-control"><label for="category">Dive into</label><div class="select-wrap"><select id="category" aria-label="Question category"><option value="all">Everything</option></select></div></div><label class="timer-toggle" for="timer-toggle"><span id="timer-mode-label">No timer</span><input id="timer-toggle" type="checkbox" role="switch" aria-label="25-second timer"><span class="switch-track" aria-hidden="true"></span></label></div>
+      <div id="game-screen">
+        <article class="question-card" aria-labelledby="prompt">
+          <div class="card-topline"><span class="round-label" id="round-label">PROMPT 1 OF 7</span><div class="round-dots" id="round-dots" aria-label="Round progress"></div><span class="timer-readout" id="timer-readout">∞<span> UNLIMITED</span></span></div>
+          <div class="question-content"><div class="question-category" id="question-category">GEOGRAPHY</div><h2 id="prompt">Getting the dive ready…</h2><p class="question-note" id="question-note"></p></div>
+          <form id="answer-form" autocomplete="off"><label class="answer-label" for="answer-input">FIND AN ANSWER OTHERS MIGHT MISS</label><div class="answer-box"><input id="answer-input" name="answer" type="text" placeholder="Your hidden gem…" maxlength="100" enterkeyhint="go" spellcheck="false" autocapitalize="off" aria-describedby="answer-feedback"><button class="submit-button" type="submit">Dive</button></div></form>
+          <div class="answer-feedback" id="answer-feedback" role="status" aria-live="polite"><span class="feedback-symbol" aria-hidden="true">∞</span> Take your time. You have unlimited guesses.</div>
+          <div class="answer-result" id="answer-result" hidden></div>
+          <div class="card-actions"><button class="text-button" id="skip-button">Skip this prompt</button><button class="text-button" id="retry-button" hidden>Try another answer</button><button class="continue-button" id="next-button" hidden>Next prompt</button></div>
+        </article>
+        <div class="round-footer"><span><span class="tiny-krill" aria-hidden="true">✦</span> <strong id="total-points">0</strong> / <span id="max-points">700</span> points</span><button class="text-button" id="new-dive-button">New dive</button></div>
+        <details class="answer-explorer" id="answer-explorer" hidden><summary>Explore this answer bank <span id="answer-count"></span></summary><div class="answer-explorer-body"><p id="bank-note"></p><div class="answer-grid" id="answer-grid"></div><a id="source-link" target="_blank" rel="noopener noreferrer">Question source</a></div></details>
+      </div>
+      <section id="results-screen" class="results-card" aria-labelledby="results-title" hidden></section>
+      <div class="scoring-guide" aria-label="Rarity score guide"><div class="scoring-title">THE RARER THE ANSWER, THE DEEPER YOU GO.</div><div class="score-scale"><span style="--tier:#a8c9d5"><i></i>Common</span><span style="--tier:#9bd6db"><i></i>Familiar</span><span style="--tier:#87d4c1"><i></i>Uncommon</span><span style="--tier:#c2dc85"><i></i>Rare</span><span style="--tier:#ffd38c"><i></i>Deep cut</span><span style="--tier:#ffac9b"><i></i>One in a krillion</span></div></div>
+      <footer class="site-footer"><span>Made for David. Dive as many times as you like.</span><span>Inspired by <a href="https://krillion.io/" target="_blank" rel="noopener noreferrer">Krillion</a> · Independent fan game</span><span class="scoring-disclosure">Original question bank · Curated rarity scores, not player statistics.</span></footer>
+    </section>
+    <aside class="field-note" aria-label="A note for David"><span class="field-note-icon" aria-hidden="true">✳</span><span class="eyebrow">A NOTE FOR DAVID</span><p>There’s always<br>another answer.<br><em>Keep diving.</em></p><div class="note-rule"></div><span class="note-small">Up to 7 prompts.<br>No daily limits.<br>No last chances.</span><img src="./assets/krill.svg" alt="A little peach-colored krill" class="note-krill"></aside>
+  </main>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="modal-top"><span class="eyebrow mint">WELCOME ABOARD, DAVID</span><button class="icon-button" id="close-help" aria-label="Close instructions">×</button></div><h2 id="help-title">Go for the hidden gems.</h2><p>Each dive has up to seven prompts. Name an answer that fits: familiar answers earn fewer points; an obscure discovery earns up to 100.</p><ol><li><strong>Type an answer.</strong> Capitals, elements, plays… there’s a whole ocean out there.</li><li><strong>Keep trying.</strong> Wrong guesses cost nothing. Try another answer after a success; only your best answer per prompt counts.</li><li><strong>Dive again.</strong> Replay the same prompts or shuffle a new set, as often as you like.</li></ol><p>Prefer a challenge? Switch on the 25-second timer before a dive. You can still retry a prompt with a fresh timer, as many times as you want.</p><div class="help-footnote">This independent fan game uses its own question bank and curated rarity scores. Some prompts explicitly use a selected answer list. See the answer bank and source after each prompt.</div><button class="submit-button help-done" id="help-done">Got it. Let’s dive.</button></dialog>
+  <noscript><div class="noscript">Please enable JavaScript to play Krillion Unlimited for David.</div></noscript>
+</body>
+</html>

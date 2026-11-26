@@ -1,0 +1,12 @@
+{
+  "name": "krillion-for-david",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A little ocean of rare-answer trivia, for David. Unlimited guesses and retries.",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check app.js && node --check engine.js && node --check data/questions.js && npm test"
+  }
+}
