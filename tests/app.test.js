@@ -77,7 +77,7 @@ class FakeElement {
   showModal() { this.open = true; }
 }
 
-function createHarness({ storage = new Map() } = {}) {
+function createHarness({ storage = new Map(), begin = true } = {}) {
   const document = {
     elements: new Map(),
     listeners: new Map(),
@@ -129,6 +129,7 @@ function createHarness({ storage = new Map() } = {}) {
     location: { href: 'https://example.org/krillion-for-david/' },
   });
   vm.runInContext(appSource, context, { filename: 'app.js' });
+  if (begin) document.getElementById('begin-button').dispatch('click');
 
   const element = id => {
     const found = document.getElementById(id);
@@ -185,6 +186,23 @@ function completeDive(game) {
   assert.equal(game.element('results-screen').hidden, false);
   return prompts;
 }
+
+test('the surface screen waits for Begin Descent before starting a saved timer', () => {
+  const storage = new Map([[storageKey, JSON.stringify({ timed: true })]]);
+  const game = createHarness({ storage, begin: false });
+  assert.equal(game.element('surface-screen').hidden, false);
+  assert.equal(game.element('dive-interface').hidden, true);
+  assert.equal(game.activeTimers(), 0);
+  game.advance(60_000);
+  assert.equal(game.element('retry-button').hidden, true);
+  game.click('begin-button');
+  assert.equal(game.element('surface-screen').hidden, true);
+  assert.equal(game.element('dive-interface').hidden, false);
+  assert.equal(game.activeTimers(), 1);
+  assert.match(game.element('timer-readout').innerHTML, /^25/);
+  game.submit('Rare answer');
+  assert.equal(game.score(), 100);
+});
 
 test('100 wrong guesses leave the current prompt active with no score penalty', () => {
   const game = createHarness();

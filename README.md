@@ -1,14 +1,14 @@
 # Krillion Unlimited · For David
 
-A standalone, ocean-themed trivia game inspired by [Krillion](https://krillion.io/). Find a less obvious answer to dive deeper. Built especially for David, with unlimited guesses, retries, replays, and fresh dives.
+A standalone, pixel-ocean trivia game inspired by [Krillion](https://krillion.io/). Find a less obvious answer to dive deeper. Built especially for David, with unlimited guesses, retries, replays, and fresh dives.
 
 **[Play Krillion Unlimited for David](https://vlad-klymenko.github.io/krillion-for-david/)**
 
 ## Play
 
-Each dive contains up to seven prompts. Type an answer and press **Dive** or Enter. A correct answer earns 10–100 points, with each point worth 10 metres. Try another answer as often as you like: only your **highest** score for each prompt counts, so retries never double-count points or replace a better answer with a worse one. Wrong guesses have no penalty.
+Select **Begin Descent** to enter the ocean. Each dive contains up to seven prompts. Type an answer and press **Dive** or Enter. A correct answer earns 10–100 points, with each point worth 10 metres. Try another answer as often as you like: only your **highest** score for each prompt counts, so retries never double-count points or replace a better answer with a worse one. Wrong guesses have no penalty.
 
-The default is untimed. The optional 25-second timer can be toggled at any time; every retry gets a fresh timer. You can skip a prompt, explore its answer bank, replay the same dive, or shuffle a fresh one. Category dives contain fewer than seven prompts when that category has a smaller question pool.
+Open **Dive Settings** to choose a question pack or toggle the timer. The default is untimed. The optional 25-second timer can be toggled at any time; every retry gets a fresh timer. You can skip a prompt, explore its answer bank, replay the same dive, or shuffle a fresh one. Category dives contain fewer than seven prompts when that category has a smaller question pool.
 
 Personal best and timer preference are saved in this browser's local storage, when available. No account, tracking, API key, or backend is required.
 
@@ -45,3 +45,5 @@ Rarity scores are **curated estimates**, not measured player frequencies. This i
 - `assets/`: original SVG krill and favicon.
 
 Code and original artwork are available under the MIT license. Linked factual sources retain their respective rights.
+
+The locally hosted VT323 font is by The VT323 Project Authors and is distributed under the SIL Open Font License 1.1, included in `assets/VT323-OFL.txt`. The boat and krill are original pixel-style SVG artwork.

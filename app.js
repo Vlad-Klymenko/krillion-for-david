@@ -23,6 +23,7 @@ let finished = false;
 let timer = null;
 let deadline = 0;
 let diveNumber = 0;
+let hasStarted = false;
 
 function persist() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ best: personalBest, timed })); }
@@ -44,13 +45,13 @@ function renderTimer() {
   $('timer-readout').innerHTML = timed ? `${seconds}<span> SECONDS</span>` : '∞<span> UNLIMITED</span>';
   $('timer-readout').classList.toggle('urgent', timed && seconds <= 5);
   $('timer-readout').setAttribute('aria-label', timed ? `${seconds} seconds remaining` : 'Unlimited time');
-  if (timed && seconds <= 0 && !settled && !finished) settleRound(null, 'timeout');
+  if (hasStarted && timed && seconds <= 0 && !settled && !finished) settleRound(null, 'timeout');
 }
 function startTimer() {
   stopTimer();
   deadline = Date.now() + 25000;
   renderTimer();
-  if (timed && !settled && !finished) timer = setInterval(renderTimer, 200);
+  if (hasStarted && timed && !settled && !finished) timer = setInterval(renderTimer, 200);
 }
 function updateDepth() {
   const score = totalScore();
@@ -61,6 +62,9 @@ function updateDepth() {
   const percent = Math.min(100, depth / 7000 * 100);
   $('depth-fill').style.height = `${percent}%`;
   $('diver').style.top = `${percent}%`;
+  $('experience').classList.toggle('underwater', depth >= 1000);
+  $('experience').classList.toggle('deep-water', depth >= 3000);
+  $('experience').classList.toggle('abyss-water', depth >= 5000);
   $('zone').textContent = depth < 1000 ? 'Just beneath the surface' : depth < 3000 ? 'Into the twilight' : depth < 5000 ? 'Past the midnight zone' : depth < 6500 ? 'Down in the abyss' : 'One in a krillion';
 }
 function renderProgress() {
@@ -78,6 +82,7 @@ function renderProgress() {
 function renderRound(focus = false) {
   stopTimer();
   settled = false;
+  $('experience').classList.toggle('is-settled', false);
   const question = dive[round];
   $('question-category').textContent = question.category;
   $('prompt').textContent = question.prompt;
@@ -122,6 +127,7 @@ function populateBank() {
 function settleRound(answer, reason = 'answer') {
   stopTimer();
   settled = true;
+  $('experience').classList.toggle('is-settled', true);
   const old = results[round];
   const better = answer && (!old || answer.score > old.score);
   if (better) results[round] = { name: answer.name, score: answer.score };
@@ -144,7 +150,7 @@ function settleRound(answer, reason = 'answer') {
 }
 function submitAnswer(event) {
   event.preventDefault();
-  if (settled || finished) return;
+  if (!hasStarted || settled || finished) return;
   if (timed && Date.now() >= deadline) { settleRound(null, 'timeout'); return; }
   const input = $('answer-input').value.trim();
   if (!input) { feedback('Type an answer first. There’s no rush.', true); $('answer-input').focus(); return; }
@@ -168,6 +174,7 @@ function startDive({ replay = false, focus = false } = {}) {
   results = [];
   attemptCounts = Array(dive.length).fill(0);
   finished = false;
+  $('experience').classList.toggle('is-finished', false);
   $('results-screen').hidden = true;
   $('game-screen').hidden = false;
   renderRound(focus);
@@ -175,6 +182,7 @@ function startDive({ replay = false, focus = false } = {}) {
 function finishDive() {
   stopTimer();
   finished = true;
+  $('experience').classList.toggle('is-finished', true);
   const total = totalScore();
   const newBest = total > personalBest;
   personalBest = Math.max(personalBest, total);
@@ -208,7 +216,11 @@ categories.forEach((category) => {
   option.textContent = category;
   $('category').append(option);
 });
-$('category').addEventListener('change', () => { selectedCategory = $('category').value; startDive({ focus: true }); });
+$('category').addEventListener('change', () => {
+  selectedCategory = $('category').value;
+  if (hasStarted) $('settings-dialog').close();
+  startDive({ focus: hasStarted });
+});
 $('answer-form').addEventListener('submit', submitAnswer);
 $('new-dive-button').addEventListener('click', () => startDive({ focus: true }));
 $('retry-button').addEventListener('click', () => renderRound(true));
@@ -230,8 +242,24 @@ $('timer-toggle').addEventListener('change', () => {
 });
 const help = $('help-dialog');
 $('help-button').addEventListener('click', () => help.showModal());
+$('surface-help').addEventListener('click', () => help.showModal());
 $('close-help').addEventListener('click', () => help.close());
 $('help-done').addEventListener('click', () => help.close());
 help.addEventListener('click', (event) => { if (event.target === help) { const rect = help.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) help.close(); } });
-document.addEventListener('visibilitychange', () => { if (!document.hidden && timed && !settled && !finished) renderTimer(); });
+const settings = $('settings-dialog');
+$('menu-button').addEventListener('click', () => settings.showModal());
+$('surface-settings').addEventListener('click', () => settings.showModal());
+$('close-settings').addEventListener('click', () => settings.close());
+$('settings-done').addEventListener('click', () => settings.close());
+settings.addEventListener('click', (event) => { if (event.target === settings) { const rect = settings.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) settings.close(); } });
+$('begin-button').addEventListener('click', () => {
+  if (hasStarted) return;
+  hasStarted = true;
+  $('surface-screen').hidden = true;
+  $('dive-interface').hidden = false;
+  $('experience').classList.toggle('is-playing', true);
+  startTimer();
+  $('answer-input').focus({ preventScroll: true });
+});
+document.addEventListener('visibilitychange', () => { if (hasStarted && !document.hidden && timed && !settled && !finished) renderTimer(); });
 startDive();
