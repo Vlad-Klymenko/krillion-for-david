@@ -1,8 +1,8 @@
-# Krillion Unlimited · For David
+# Krillion Unlimited
 
-A standalone, pixel-ocean trivia game inspired by [Krillion](https://krillion.io/). Find a less obvious answer to dive deeper. Built especially for David, with unlimited guesses, retries, replays, and fresh dives.
+A standalone, pixel-ocean trivia game inspired by [Krillion](https://krillion.io/). Find a less obvious answer to dive deeper. Play with unlimited guesses, retries, replays, and fresh dives.
 
-**[Play Krillion Unlimited for David](https://vlad-klymenko.github.io/krillion-for-david/)**
+**[Play Krillion Unlimited](https://vlad-klymenko.github.io/krillion-for-david/)**
 
 ## Play
 

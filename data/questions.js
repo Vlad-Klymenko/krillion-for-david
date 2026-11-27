@@ -1,4 +1,4 @@
-// Original, source-linked trivia for David. Rarity points are editorial estimates.
+// Original, source-linked trivia. Rarity points are editorial estimates.
 // Sources verify answers, not rarity. Historical dates keep evolving sets stable.
 export const QUESTIONS = [
   {
