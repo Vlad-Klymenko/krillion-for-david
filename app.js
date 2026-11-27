@@ -199,7 +199,7 @@ function finishDive() {
   $('results-title').focus({ preventScroll: true });
 }
 async function copyResults() {
-  const text = `Krillion Unlimited\n${format(getDepth(totalScore()))} m · ${totalScore()}/${dive.length * 100} pts\n${results.map((result) => result?.score >= 85 ? '🟧' : result?.score >= 65 ? '🟨' : result?.score > 0 ? '🟩' : '⬛').join('')}\nUnlimited retries, endless dives.\n${location.href.split('?')[0].split('#')[0]}`;
+  const text = `Fake Krillion\n${format(getDepth(totalScore()))} m · ${totalScore()}/${dive.length * 100} pts\n${results.map((result) => result?.score >= 85 ? '🟧' : result?.score >= 65 ? '🟨' : result?.score > 0 ? '🟩' : '⬛').join('')}\nUnlimited retries, endless dives.\n${location.href.split('?')[0].split('#')[0]}`;
   try { await navigator.clipboard.writeText(text); $('copy-status').textContent = 'Dive report copied.'; }
   catch {
     $('copy-status').textContent = 'Select and copy your dive report below.';

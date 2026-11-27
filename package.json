@@ -1,9 +1,9 @@
 {
-  "name": "krillion-for-david",
+  "name": "fake-krillion",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A little ocean of rare-answer trivia. Unlimited guesses and retries.",
+  "description": "Fake Krillion: rare-answer trivia with unlimited guesses and retries.",
   "scripts": {
     "start": "python3 -m http.server 4173 --bind 127.0.0.1",
     "test": "node --test tests/*.test.js",

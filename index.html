@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080f1e">
-  <meta name="description" content="Krillion Unlimited. A pixel-ocean trivia dive with unlimited guesses, retries and replays.">
-  <title>Krillion · Unlimited</title>
+  <meta name="description" content="Fake Krillion. A pixel-ocean trivia dive with unlimited guesses, retries and replays.">
+  <title>Fake Krillion</title>
   <link rel="icon" href="./assets/favicon.svg?v=2" type="image/svg+xml">
   <link rel="preload" href="./assets/vt323.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="./styles.css?v=3">
-  <script type="module" src="./app.js?v=3"></script>
+  <link rel="stylesheet" href="./styles.css?v=4">
+  <script type="module" src="./app.js?v=4"></script>
 </head>
 <body>
   <div class="experience" id="experience">
@@ -24,7 +24,7 @@
       <button id="help-button" class="square-button help-button" aria-label="How to play" title="How to play">?</button>
     </header>
     <section class="surface-screen" id="surface-screen" aria-labelledby="game-title">
-      <div class="surface-title"><h1 id="game-title">KRILLION</h1><p class="surface-subtitle">THE UNLIMITED DIVE</p><p class="surface-description">7 prompts · endless retries · rarer answers sink deeper</p></div>
+      <div class="surface-title"><h1 id="game-title"><span class="fake-word">FAKE</span> KRILLION</h1><p class="surface-subtitle">THE UNLIMITED DIVE</p><p class="surface-description">7 prompts · endless retries · rarer answers sink deeper</p></div>
       <div class="surface-controls"><button class="begin-button" id="begin-button"><span aria-hidden="true">▼</span> BEGIN DESCENT <span aria-hidden="true">▼</span></button><div class="surface-links"><span>UNLIMITED ∞</span><button id="surface-help">HOW TO PLAY</button><button id="surface-settings">DIVE SETTINGS</button></div><p class="fan-label">An independent fan game inspired by <a href="https://krillion.io/" target="_blank" rel="noopener noreferrer">Krillion</a></p></div>
     </section>
     <main class="dive-interface" id="dive-interface" hidden>
@@ -44,6 +44,6 @@
   </div>
   <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="modal-top"><h2 id="settings-title">DIVE SETTINGS</h2><button class="square-button" id="close-settings" aria-label="Close settings">×</button></div><p class="modal-note">Your ocean. Your rules.</p><div class="setting-row"><label for="category">QUESTION PACK</label><div class="select-wrap"><select id="category" aria-label="Question category"><option value="all">Everything</option></select></div></div><label class="setting-row timer-toggle" for="timer-toggle"><span>25-SECOND TIMER<small id="timer-mode-label">No timer</small></span><input id="timer-toggle" type="checkbox" role="switch" aria-label="25-second timer"><span class="switch-track" aria-hidden="true"></span></label><p class="settings-note">Every retry gets a fresh timer. Wrong guesses never cost points.</p><button class="pixel-button" id="settings-done">BACK TO THE OCEAN</button></dialog>
   <dialog id="help-dialog" aria-labelledby="help-title"><div class="modal-top"><h2 id="help-title">HOW TO PLAY</h2><button class="square-button" id="close-help" aria-label="Close instructions">×</button></div><p>Seven prompts. One little krill. A whole ocean of hidden gems.</p><ol><li><strong>Name an answer that fits.</strong> Familiar answers earn fewer points; rare finds take you deeper.</li><li><strong>Keep trying.</strong> Wrong guesses cost nothing. Try another answer after a success; only your best answer per prompt counts.</li><li><strong>Dive again.</strong> Replay the same prompts or shuffle a new set, as often as you like.</li></ol><p>Turn on the optional 25-second timer in Dive Settings if you want a challenge. Every retry gets a fresh clock.</p><div class="help-footnote">Independent fan game with original artwork and 42 source-linked prompts. Rarity scores are curated estimates, not player statistics. Question scopes and sources appear in the answer bank.</div><button class="pixel-button" id="help-done">LET’S DIVE</button></dialog>
-  <noscript><div class="noscript">Please enable JavaScript to play Krillion Unlimited.</div></noscript>
+  <noscript><div class="noscript">Please enable JavaScript to play Fake Krillion.</div></noscript>
 </body>
 </html>
